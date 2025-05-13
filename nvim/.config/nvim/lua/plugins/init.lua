@@ -1,34 +1,17 @@
 return {
-  {
-    "neovim/nvim-lspconfig",
-    config = function()
-      require "configs.lspconfig"
-    end,
-  },
+
+  -- These are some examples, uncomment them if you want to see them work!
+
+  -- test new blink
+  -- { import = "nvchad.blink.lazyspec" },
+
   -- {
-  --   "artemave/workspace-diagnostics.nvim",
-  -- }
-  {
-    "jghauser/mkdir.nvim",
-  },
-  {
-    "rcarriga/nvim-notify",
-    configs = function()
-      vim.notify = require "notify"
-    end,
-  },
-  {
-    "nvim-tree/nvim-tree.lua",
-    opts = {
-      view = {
-        width = 48, -- Ustawienie domyślnej szerokości
-      },
-    },
-  },
-  {
-    "nvim-pack/nvim-spectre",
-  },
-  {
-    "nvim-lua/popup.nvim",
-  },
+  -- 	"nvim-treesitter/nvim-treesitter",
+  -- 	opts = {
+  -- 		ensure_installed = {
+  -- 			"vim", "lua", "vimdoc",
+  --      "html", "css"
+  -- 		},
+  -- 	},
+  -- },
 }
