@@ -1,0 +1,78 @@
+return {
+  -- DAP core
+  {
+    "mfussenegger/nvim-dap",
+    keys = {
+      {
+        "<leader>db",
+        function()
+          require("dap").toggle_breakpoint()
+        end,
+        desc = "Toggle breakpoint",
+      },
+      {
+        "<leader>dc",
+        function()
+          require("dap").continue()
+        end,
+        desc = "Continue",
+      },
+    },
+  },
+
+  -- UI
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "mfussenegger/nvim-dap" },
+    config = function()
+      require("dapui").setup()
+    end,
+  },
+
+  -- VSCode JS adapter
+  {
+    "mxsdev/nvim-dap-vscode-js",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      {
+        "microsoft/vscode-js-debug",
+        build = "npm install --legacy-peer-deps && npm run compile",
+      },
+    },
+    event = "VeryLazy",
+    config = function()
+      local dap = require "dap"
+      require("dap-vscode-js").setup {
+        node_path = "node",
+        debugger_path = vim.fn.stdpath "data" .. "/lazy/vscode-js-debug",
+        adapters = { "pwa-node", "pwa-chrome" },
+      }
+
+      for _, lang in ipairs { "typescript", "javascript" } do
+        dap.configurations[lang] = {
+          {
+            type = "pwa-node",
+            request = "launch",
+            name = "Launch current file",
+            program = "${file}",
+            cwd = "${workspaceFolder}",
+          },
+          {
+            type = "pwa-node",
+            request = "attach",
+            name = "Attach to process",
+            processId = require("dap.utils").pick_process,
+            cwd = "${workspaceFolder}",
+          },
+          {
+            type = "pwa-chrome",
+            request = "launch",
+            name = "Launch Chrome (Angular)",
+            url = "http://localhost:4200",
+            webRoot = "${workspaceFolder}",
+          },
+        }
+      end
+    end,
+  },
+}

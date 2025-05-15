@@ -1,0 +1,44 @@
+#fdfind
+#alias fd="fdfind"
+
+#fzf
+[ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
+[ -f /usr/share/bash-completion/completions/fzf ] && source /usr/share/bash-completion/completions/fzf
+
+export FZF_DEFAULT_COMMAND="fdfind --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fdfind --type=d --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_OPTS="--preview 'batcat -n --color=always --line-range :500 {}'"
+export FZF_ALT_C_OPTS="--preview 'eza -- tree --color=always {} | head -200'"
+
+_fzf_compgen_path() {
+  fdfind --hidden --exclude .git . "$1"
+}
+
+_fzf_compgen_dir() {
+  fdfinf --type=d --hidden --exclude .git . "$1"
+}
+
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)             fzf --preview 'eza --tree --color=always {} | head 200'                   "$@" ;;
+    export|unset)   fzf --preview "eval 'echo \$' {}"                                         "$@" ;;
+    ssh)            fzf --preview 'dig {}'                                                    "$@" ;;
+    *)              fzf --preview "--preview 'batcat -n --color=always --line-range :500 {}'" "$@" ;;
+  esac
+}
+
+#source ~/Scripts/fzf-git.sh/fzf-git.sh
+
+#bat
+alias cat="batcat"
+export BAT_THEME="Visual Studio Dark+"
+
+#eza
+alias ls="eza --color=always --long --icons=always --tree --level=1"
+alias la="eza --color=always --long --icons=always --tree --level=1 --all"
+alias ll="eza --color=always --long --icons=always --tree --level=2"
+
