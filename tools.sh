@@ -46,13 +46,9 @@ if [[ (! -x "$NVIM_DIR/nvim" && ! "$(command -v nvim &>/dev/null)") ]]; then
   url="https://github.com/neovim/neovim/releases/download/${latest}/nvim-linux-x86_64.tar.gz"
   tmp=$(mktemp -d)
   curl -L "$url" -o "$tmp/nvim.tar.gz"
-  tar -xzf "$tmp/nvim.tar.gz" -C "$INSTALL_DIR"
+  tar -xzf "$tmp/nvim.tar.gz"
+  mv nvim-linux-x86_64/* $INSTALL_DIR
   rm -rf "$tmp"
-  if ! grep -q "$NVIM_BIN/bin" "$HOME/.bashrc"; then
-    echo "🛠 Updating ~/.bashrc to include Neovim..."
-    echo "export PATH=\"$NVIM_BIN/bin:\$PATH\"" >> "$HOME/.bashrc"
-  fi
-  export PATH="$NVIM_BIN/bin:$PATH"
 else
   echo "🔍 Neovim already installed, skipping"
 fi
@@ -139,10 +135,10 @@ build_from_git() {
 build_from_git "jesseduffield/lazygit" "lazygit" "go"
 build_from_git "jesseduffield/lazydocker" "lazydocker" "go"
 build_from_git "sharkdp/bat" "bat" "rust"
-build_from_git "sharkdp/fzf" "fzf" "go"
 build_from_git "eza-community/eza" "eza" "rust"
 build_from_git "starship/starship" "starship" "rust"
-build_from_git "Arcanemagus/atac" "atac" "go"
-build_from_git "lazysql/lazysql" "lazysql" "rust"
+build_from_git "junegunn/fzf" "fzf" "go"
+build_from_git "Julien-cpsn/atac" "atac" "rust"
+build_from_git "jorgerojas26/lazysql" "lazysql" "go"
 
 echo "✅ Tools setup complete."

@@ -1,25 +1,14 @@
-#general
+. $HOME/.local/lib/z/z.sh
 alias cls="clear"
 alias srcaliases=". ~/.bash_aliases"
 alias python=python3
-# alias mm="~/AppImages/matterhorn/matterhorn -c ~/AppImages/matterhorn/config.ini"
-
-#apps
-alias kp="/home/pplaczek/AppImages/KeePassXC-2.7.7-x86_64.AppImage"
-# alias nvim="/home/pplaczek/AppImages/nvim.appimage"
 alias n="nano"
 alias v="nvim ."
-alias lsq="~/AppImages/lazysql"
-#alias z="/home/pplaczek/.sh/z.sh"
-. /home/pplaczek/.sh/z.sh
-
-#docker-compose
+alias lsq="lazysql"
 alias ld="lazydocker"
 alias dc="docker-compose"
 alias dcu="docker-compose up"
 alias dcd="docker-compose down"
-
-#git
 alias lg="lazygit"
 alias gf="git fetch"
 alias gs="git status"
@@ -45,6 +34,11 @@ alias grc="git rebase --continue"
 alias gra="git rebase --abort"
 alias gulc="ga . && gca"
 alias gulcp="gulc && gpsfc"
+alias cat="batcat"
+alias ls="eza --color=always --long --icons=always --tree --level=1"
+alias la="eza --color=always --long --icons=always --tree --level=1 --all"
+alias ll="eza --color=always --long --icons=always --tree --level=2"
+alias yarnstart="NODE_OPTIONS="--max-old-space-size=4096" yarn start"
 
 gb() {
 	git branch |grep \* |cut -c 3-
@@ -60,7 +54,6 @@ gpsfc() {
 	command git push -f origin $(gb)
 }
 
-#tab-completion
 source ~/.bash_completion.d/complete_alias
 complete -F _complete_alias dc
 complete -F _complete_alias gd
@@ -71,4 +64,3 @@ complete -F _complete_alias gps
 complete -F _complete_alias gr
 complete -F _complete_alias gri
 
-alias yarnstart="NODE_OPTIONS="--max-old-space-size=4096" yarn start"

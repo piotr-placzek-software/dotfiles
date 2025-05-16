@@ -33,6 +33,10 @@ run_script() {
   fi
 }
 
+INSTALL_DIR="$HOME/.local/bin"
+echo "export PATH=$INSTALL_DIR:$PATH" >> ~/.bashrc
+export PATH=$INSTALL_DIR:$PATH
+
 run_script "dependencies"  "$SKIP_DEPS"
 run_script "tools" "$SKIP_TOOLS"
 run_script "dotfiles" "$SKIP_DOTFILES"

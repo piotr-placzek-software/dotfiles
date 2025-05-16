@@ -8,14 +8,14 @@ profile_file="$HOME/.bashrc"
 # Lines to add to source .bash_aliases and .bashrc_custom
 source_lines=$(cat <<EOF
 
-# Load custom aliases
-if [ -f ~/.bash_aliases ]; then
-  . ~/.bash_aliases
-fi
-
 # Load additional custom bash configuration
 if [ -f ~/.bashrc_custom ]; then
   . ~/.bashrc_custom
+fi
+
+# Load custom aliases
+if [ -f ~/.bash_aliases ]; then
+  . ~/.bash_aliases
 fi
 
 EOF

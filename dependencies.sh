@@ -31,7 +31,7 @@ fi
 
 echo "📦 Installing dev tools..."
 nix profile install nixpkgs#stow nixpkgs#wget nixpkgs#gnumake nixpkgs#cmake nixpkgs#gcc nixpkgs#glibc nixpkgs#ncurses  # nixpkgs#go nixpkgs#rustup
-nix profile install nixpkgs#curl nixpkgs#tar nixpkgs#jq
+nix profile install nixpkgs#curl nixpkgs#gnutar nixpkgs#jq nixpkgs#openssh
 # nix profile install nixpkgs#ca-certificates
 
 # ✅ Ensure ~/.nix-profile/bin is in PATH

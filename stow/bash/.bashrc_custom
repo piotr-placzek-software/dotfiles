@@ -1,7 +1,3 @@
-#fdfind
-#alias fd="fdfind"
-
-#fzf
 [ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
 [ -f /usr/share/bash-completion/completions/fzf ] && source /usr/share/bash-completion/completions/fzf
 
@@ -31,14 +27,5 @@ _fzf_comprun() {
   esac
 }
 
-#source ~/Scripts/fzf-git.sh/fzf-git.sh
-
-#bat
-alias cat="batcat"
 export BAT_THEME="Visual Studio Dark+"
-
-#eza
-alias ls="eza --color=always --long --icons=always --tree --level=1"
-alias la="eza --color=always --long --icons=always --tree --level=1 --all"
-alias ll="eza --color=always --long --icons=always --tree --level=2"
 

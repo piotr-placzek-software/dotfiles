@@ -17,7 +17,7 @@ This is my developer environment configured automatically using:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/dotfiles.git ~/.dotfiles
+git clone https://github.com/piotr-placzek-software/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ```
 
